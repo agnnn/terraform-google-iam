@@ -16,7 +16,7 @@
 
 variable "audit_log_config" {
   description = "List of objects to be added to audit log config"
-  type        = object( { service: string, object( { log_config: list({ log_type: string, exempted_members: list(string) }) }) })
+  type        = object( { service: string, log_config = object({ list({ log_type: string, exempted_members: list(string) }) }) })
 }
 
 variable "project" {
