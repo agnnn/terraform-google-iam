@@ -27,6 +27,6 @@ resource "google_project_iam_audit_config" "project" {
   service  = each.value.service
   audit_log_config {
     log_type         = each.value.log_config.log_type
-    exempted_members = each.value.exempted_members
+    exempted_members = each.value.log_config.exempted_members
   }
 }
