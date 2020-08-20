@@ -23,9 +23,8 @@ variable "audit_log_config" {
       exempted_members: list(string)
        })
       ) 
-    }) 
-  })
-
+    })
+  }
 variable "project" {
   description = "Project to add the IAM policies/bindings"
   type        = string
