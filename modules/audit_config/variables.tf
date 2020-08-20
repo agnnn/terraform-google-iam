@@ -16,7 +16,7 @@
 
 variable "audit_log_config" {
   description = "List of objects to be added to audit log config"
-  type        = list(object ({ 
+  type        = object ({ 
     service: string,
     log_config: list(object({
       log_type: string,
@@ -24,7 +24,6 @@ variable "audit_log_config" {
        })
       ) 
     })
-  )
 }
 variable "project" {
   description = "Project to add the IAM policies/bindings"
