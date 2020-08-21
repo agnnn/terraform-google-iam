@@ -15,10 +15,10 @@
  */
 
 locals {
-  audit_log_config = {
+  audit_log_config = flatten({
     for key, val in var.audit_log_config :
     key => val
-  }
+  })
 }
 
 resource "google_project_iam_audit_config" "project" {
