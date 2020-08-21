@@ -14,8 +14,15 @@
  * limitations under the License.
  */
 
+locals {
+  audit_log_config = {
+    for key, val in var.audit_log_config :
+    key => val
+  }
+}
+
 resource "google_project_iam_audit_config" "project" {
-  for_each = {for services in var.audit_log_config: services.service => service.log_config}
+  for_each = local.audit_log_config
   project  = var.project
   service  = each.value.service
   audit_log_config {
