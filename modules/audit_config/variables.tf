@@ -30,7 +30,7 @@ variable "audit_log_config" {
   type = set(object(
     {
       exempted_members = set(string)
-      log_type         = string
+      log_type         = set(string)
     }
   ))
 }
