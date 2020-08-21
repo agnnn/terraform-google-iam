@@ -15,7 +15,7 @@
  */
 
 resource "google_organization_iam_audit_config" "config" {
-  for_each = var.iam_audit_config
+  for_each = var.audit_log_config
   project  = var.project
   service  = each.key
   dynamic audit_log_config {
