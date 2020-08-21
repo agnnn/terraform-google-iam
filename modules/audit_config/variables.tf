@@ -19,7 +19,7 @@ variable "audit_log_config" {
   type        = list(object ({ 
     service: string,
     log_config: list(object({
-      log_type: list(string),
+      log_type: string,
       exempted_members: list(string)
        })
       ) 
