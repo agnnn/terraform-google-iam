@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
-variable "audit_log_config" {
-  type        = map(service: string, map(log_type: string, exempted_members : list(string) ))
-  default     = {}
+variable "audit_log_config" {	
+  description = "List of objects to be added to audit log config"	
+  type        = list(object ({ 	
+    service: string,	
+    log_config: list(object({	
+      log_type: string,	
+      exempted_members: list(string)	
+       })	
+      ) 	
+    })	
+  )	
 }
 
 variable "project" {
