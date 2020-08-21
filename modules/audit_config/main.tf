@@ -16,9 +16,9 @@
 
 locals {
   audit_log_config = {
-    for service in var.audit_log_config : {
+    for service_key, service in var.audit_log_config : {
       for log_type, exempted_members in audit_log_config.log_config : {
-        service = service
+        service_key = service
         log_type = log_type
         exempted_members = exempted_members
       }
