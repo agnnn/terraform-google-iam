@@ -15,7 +15,7 @@
  */
 
 variable "audit_log_config" {
-  type        = map(map(list(string)))
+  type        = map(service: string, map(log_type: string, exempted_members : list(string) ))
   default     = {}
 }
 
