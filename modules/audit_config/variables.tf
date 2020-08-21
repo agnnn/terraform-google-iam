@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-variable "iam_audit_config" {
+variable "audit_log_config" {
   type        = map(map(list(string)))
   default     = {}
 }

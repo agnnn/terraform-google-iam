@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-resource "google_organization_iam_audit_config" "config" {
+resource "google_project_iam_audit_config" "config" {
   for_each = var.audit_log_config
   project  = var.project
   service  = each.key
