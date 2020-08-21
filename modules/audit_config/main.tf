@@ -18,7 +18,8 @@ resource "google_project_iam_audit_config" "config" {
   for_each = var.audit_log_config
   project  = var.project
   service  = each.key
-  dynamic audit_log_config {
+  
+  dynamic "audit_log_config" {
     for_each = each.value
     iterator = config
     content {
