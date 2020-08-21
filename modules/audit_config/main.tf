@@ -15,7 +15,7 @@
  */
 
 resource "google_project_iam_audit_config" "project" {
-  for_each = {for services in var.audit_log_config: services.service => service}
+  for_each = {for services in var.audit_log_config: services.service => service.log_config}
   project  = var.project
   service  = each.value.service
   audit_log_config {
