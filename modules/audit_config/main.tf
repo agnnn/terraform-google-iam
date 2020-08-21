@@ -22,7 +22,7 @@ locals {
 }
 
 resource "google_project_iam_audit_config" "project" {
-  for_each = local.audit_log_config
+  for_each = toset(local.audit_log_config)
   project  = var.project
   service  = each.value.service
   audit_log_config {
