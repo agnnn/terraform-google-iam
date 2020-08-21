@@ -13,25 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+resource "google_project_iam_audit_config" "this" {
+  project = var.project
+  service = var.service
 
-locals {
-  audit_log_config = {
-    for service_key, service in var.audit_log_config : {
-      for log_type, exempted_members in audit_log_config.log_config : {
-        service_key = service
-        log_type = log_type
-        exempted_members = exempted_members
-      }
+  dynamic "audit_log_config" {
+    for_each = var.audit_log_config
+    content {
+      exempted_members = audit_log_config.value["exempted_members"]
+      log_type         = audit_log_config.value["log_type"]
     }
   }
-}
 
-resource "google_project_iam_audit_config" "project" {
-  for_each = local.audit_log_config
-  project  = var.project // project ID
-  service  = each.value.service // allservices 
-  audit_log_config {
-    log_type         = each.value.log_type // ["data_read","data_write","admin_read"]
-    exempted_members = each.value.exempted_members //[]
-  }
 }
