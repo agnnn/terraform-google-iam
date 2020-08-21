@@ -15,18 +15,18 @@
  */
 
 locals {
-  audit_log_config = flatten({
+  audit_log_config = {
     for key, val in var.audit_log_config :
     key => val
-  })
+  }
 }
 
 resource "google_project_iam_audit_config" "project" {
   for_each = local.audit_log_config
-  project  = var.project
-  service  = each.value.service
+  project  = var.project // project ID
+  service  = each.value.service // allservices 
   audit_log_config {
-    log_type         = each.value.log_config.log_type
-    exempted_members = each.value.log_config.exempted_members
+    log_type         = each.value.log_config.log_type // ["data_read","data_write","admin_read"]
+    exempted_members = each.value.log_config.exempted_members //[]
   }
 }
