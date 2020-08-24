@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-resource "google_project_iam_audit_config" "config" {
-  for_each = var.audit_log_config
+locals {
+  audit_log_config = {
+    for key, val in var.audit_log_config :
+    key => val
+  }
+}
+
+resource "google_project_iam_audit_config" "project" {
+  for_each = local.audit_log_config
   project  = var.project
-  service  = each.key
-  
-  dynamic "audit_log_config" {
-    for_each = each.value
-    iterator = config
-    content {
-      log_type         = config.key
-      exempted_members = config.value
-    }
+  service  = each.value.service
+  audit_log_config {
+    log_type         = each.value.log_type
+    exempted_members = each.value.exempted_members
   }
 }
