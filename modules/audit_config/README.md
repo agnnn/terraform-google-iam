@@ -57,7 +57,7 @@ module "audit_log_config" {
 
 | Name | Description |
 |------|-------------|
-| audit_log_config | Map of log type and exempted members to be added to service |
+| audit_log_config | Map of log type and exempted members added to service |
 
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
