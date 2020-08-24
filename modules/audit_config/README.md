@@ -1,0 +1,63 @@
+# Module kms_crypto_key IAM
+
+This optional module is used to configure audit log configs for a project.
+
+## Example Usage
+```
+module "audit_log_config" {
+  source          = "terraform-google-modules/iam/google//modules/audit_config"
+
+  project          = var.project_id
+  
+  audit_log_config = [{
+  service          = "allServices" 
+  {
+    log_config = 
+    [
+      {
+        log_type = DATA_READ
+        exempted_members= ["serviceAccount:${var.member2}"]
+      },
+      {
+        log_type = DATA_WRITE
+        exempted_members= ["serviceAccount:${var.member2}"]
+      }
+    ]
+  },
+
+  service          = "storage.googleapis.com" 
+  {
+    log_config = 
+    [
+      {
+        log_type = DATA_READ
+        exempted_members= ["serviceAccount:${var.member2}"]
+      },
+      {
+        log_type = DATA_WRITE
+        exempted_members= ["serviceAccount:${var.member2}"]
+      }
+    ]
+  }
+
+}]
+
+```
+
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| audit_log_config | Map of role (key) and list of members (value) to add the IAM policies/bindings | list(object({service = string log_config = list(object({ log_type = string exempted_members = list(string) })) })) | n/a | yes |
+| project | GCP Project ID | string | n/a | yes |
+
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| audit_log_config | Map of log type and exempted members to be added to service |
+
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
