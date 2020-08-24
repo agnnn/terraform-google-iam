@@ -49,7 +49,7 @@ module "audit_log_config" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| audit_log_config | Map of role (key) and list of members (value) to add the IAM policies/bindings | list(object({service = string log_config = list(object({ log_type = string exempted_members = list(string) })) })) | n/a | yes |
+| audit_log_config | List of objects to be added to audit log config | list(object({service = string log_config = list(object({ log_type = string exempted_members = list(string) })) })) | n/a | yes |
 | project | GCP Project ID | string | n/a | yes |
 
 
