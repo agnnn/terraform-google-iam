@@ -16,11 +16,11 @@ module "audit_log_config" {
     [
       {
         log_type = DATA_READ
-        exempted_members= ["serviceAccount:${var.member2}"]
+        exempted_members= ["serviceAccount:${var.member}", "user@test.com"]
       },
       {
         log_type = DATA_WRITE
-        exempted_members= ["serviceAccount:${var.member2}"]
+        exempted_members= ["serviceAccount:${var.member}", "user@test.com"]
       }
     ]
   },
@@ -31,11 +31,11 @@ module "audit_log_config" {
     [
       {
         log_type = DATA_READ
-        exempted_members= ["serviceAccount:${var.member2}"]
+        exempted_members= ["serviceAccount:${var.member}", "user@test.com"]
       },
       {
         log_type = DATA_WRITE
-        exempted_members= ["serviceAccount:${var.member2}"]
+        exempted_members= ["serviceAccount:${var.member}", "user@test.com"]
       }
     ]
   }
