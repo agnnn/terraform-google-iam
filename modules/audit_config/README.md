@@ -1,4 +1,4 @@
-# Module kms_crypto_key IAM
+# Module audit_config
 
 This optional module is used to configure audit log configs for a project.
 
