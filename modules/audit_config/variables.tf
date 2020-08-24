@@ -16,14 +16,13 @@
 
 variable "audit_log_config" {
   type        = map(object({
-  service = string
+    service = string
     log_config= map(object({
       log_type= string
       exempted_members = list(string)
     }))
   })) 
 }
-
 
 variable "project" {
   description = "Project to add the IAM policies/bindings"
