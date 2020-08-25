@@ -5,18 +5,18 @@ This optional module is used to configure audit log configs for a project.
 ## Example Usage
 ```
 module "audit_log_config" {
-  source          = "terraform-google-modules/iam/google//modules/audit_config"
+  source           = "terraform-google-modules/iam/google//modules/audit_config"
 
   project          = my-project
   
   audit_log_config = [{
-  service          = "allServices" 
+  service          = "pubsub.googleapis.com" 
   {
     log_config = 
     [
       {
         log_type = DATA_READ
-        exempted_members= [
+        exempted_members = [
           "group:my-group@my-org.com",
           "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
           "user:my-user@my-org.com"
@@ -24,7 +24,7 @@ module "audit_log_config" {
       },
       {
         log_type = DATA_WRITE
-        exempted_members= [
+        exempted_members = [
           "group:my-group@my-org.com",
           "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
           "user:my-user@my-org.com"
@@ -39,7 +39,7 @@ module "audit_log_config" {
     [
       {
         log_type = DATA_READ
-        exempted_members= [
+        exempted_members = [
           "group:my-group@my-org.com",
           "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
           "user:my-user@my-org.com"
@@ -47,7 +47,7 @@ module "audit_log_config" {
       },
       {
         log_type = DATA_WRITE
-        exempted_members= [
+        exempted_members = [
           "group:my-group@my-org.com",
           "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
           "user:my-user@my-org.com"
@@ -65,7 +65,7 @@ module "audit_log_config" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| audit_log_config | List of objects to be added to audit log config | list(object({service = string log_config = list(object({ log_type = string exempted_members = list(string) })) })) | n/a | yes |
+| audit_log_config | List of objects to be added to audit log config | list(object({service = string, log_config = list(object({ log_type = string, exempted_members = list(string) })) })) | n/a | yes |
 | project | GCP Project ID | string | n/a | yes |
 
 
