@@ -7,7 +7,7 @@ This optional module is used to configure audit log configs for a project.
 module "audit_log_config" {
   source          = "terraform-google-modules/iam/google//modules/audit_config"
 
-  project          = var.project_id
+  project          = my-project
   
   audit_log_config = [{
   service          = "allServices" 
@@ -16,11 +16,19 @@ module "audit_log_config" {
     [
       {
         log_type = DATA_READ
-        exempted_members= ["serviceAccount:${var.member}", "user:employee@test.com"]
+        exempted_members= [
+          "group:my-group@my-org.com",
+          "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
+          "user:my-user@my-org.com"
+        ]
       },
       {
         log_type = DATA_WRITE
-        exempted_members= ["serviceAccount:${var.member}", "user:employee@test.com"]
+        exempted_members= [
+          "group:my-group@my-org.com",
+          "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
+          "user:my-user@my-org.com"
+        ]
       }
     ]
   },
@@ -31,11 +39,19 @@ module "audit_log_config" {
     [
       {
         log_type = DATA_READ
-        exempted_members= ["serviceAccount:${var.member}", "user:employee@test.com"]
+        exempted_members= [
+          "group:my-group@my-org.com",
+          "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
+          "user:my-user@my-org.com"
+        ]
       },
       {
         log_type = DATA_WRITE
-        exempted_members= ["serviceAccount:${var.member}", "user:employee@test.com"]
+        exempted_members= [
+          "group:my-group@my-org.com",
+          "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
+          "user:my-user@my-org.com"
+        ]    
       }
     ]
   }
