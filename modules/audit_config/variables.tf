@@ -23,6 +23,7 @@ variable "audit_log_config" {
       exempted_members = list(string)
     }))
   }))
+  default = []
 }
 
 variable "project" {
