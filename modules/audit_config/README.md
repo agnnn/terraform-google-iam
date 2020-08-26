@@ -2,6 +2,50 @@
 
 This optional module is used to configure audit log configs for a project.
 
+audit_log_config = [
+  {
+    "service" = "storage.googleapis.com"
+    "log_config" = [
+      {
+        "exempted_members" = [
+          "user:ravindran@pythian.com",
+        ]
+        "log_type" = "DATA_READ"
+      },
+      {
+        "exempted_members" = []
+        "log_type" = "DATA_WRITE"
+      },
+      {
+        "exempted_members" = [
+          "user:ravindran@pythian.com",
+        ]
+        "log_type" = "ADMIN_READ"
+      },
+    ]
+  },
+  {
+    "service" = "pubsub.googleapis.com"
+    "log_config" = [
+      {
+        "log_type" = "DATA_READ"
+        "exempted_members" = [
+          "user:ravindran@pythian.com",
+        ]
+      },
+      {
+        "log_type" = "DATA_WRITE"
+        "exempted_members" = []
+      },
+      {
+        "log_type" = "ADMIN_READ"
+        "exempted_members" = [
+          "user:ravindran@pythian.com",
+        ]
+      }
+    ]
+  }
+]
 ## Example Usage
 ```
 module "audit_log_config" {
@@ -9,54 +53,50 @@ module "audit_log_config" {
 
   project          = my-project
   
-  audit_log_config = [{
-  service          = "pubsub.googleapis.com" 
-  {
-    log_config = 
-    [
-      {
-        log_type = DATA_READ
-        exempted_members = [
-          "group:my-group@my-org.com",
-          "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
-          "user:my-user@my-org.com"
-        ]
-      },
-      {
-        log_type = DATA_WRITE
-        exempted_members = [
-          "group:my-group@my-org.com",
-          "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
-          "user:my-user@my-org.com"
-        ]
-      }
-    ]
-  },
-
-  service          = "storage.googleapis.com" 
-  {
-    log_config = 
-    [
-      {
-        log_type = DATA_READ
-        exempted_members = [
-          "group:my-group@my-org.com",
-          "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
-          "user:my-user@my-org.com"
-        ]
-      },
-      {
-        log_type = DATA_WRITE
-        exempted_members = [
-          "group:my-group@my-org.com",
-          "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
-          "user:my-user@my-org.com"
-        ]    
-      }
-    ]
-  }
-
-}]
+  audit_log_config = [
+    {
+      service    = "pubsub.googleapis.com"      
+      log_config = [
+        {
+          log_type = DATA_READ
+          exempted_members = [
+            "group:my-group@my-org.com",
+            "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
+            "user:my-user@my-org.com"
+          ]
+        },
+        {
+          log_type = DATA_WRITE
+          exempted_members = [
+            "group:my-group@my-org.com",
+            "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
+            "user:my-user@my-org.com"
+          ]
+        }
+      ]
+    },
+    {
+      service    = "storage.googleapis.com"       
+      log_config = [
+        {
+          log_type = DATA_READ
+          exempted_members = [
+            "group:my-group@my-org.com",
+            "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
+            "user:my-user@my-org.com"
+          ]
+        },
+        {
+          log_type = DATA_WRITE
+          exempted_members = [
+            "group:my-group@my-org.com",
+            "serviceAccount:my-sa@my-project.iam.gserviceaccount.com",
+            "user:my-user@my-org.com"
+          ]    
+        }
+      ]
+    }
+  ]
 
 ```
 
