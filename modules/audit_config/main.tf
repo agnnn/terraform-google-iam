@@ -21,16 +21,16 @@ locals {
   }
 }
 
-resource "google_project_iam_audit_config" "project" {
-  for_each = local.audit_log_config
-  project  = var.project
-  service  = each.key
+# resource "google_project_iam_audit_config" "project" {
+#   for_each = local.audit_log_config
+#   project  = var.project
+#   service  = each.key
 
-  dynamic "audit_log_config" {
-    for_each = each.value
-    content {
-      log_type         = each.value.log_type
-      exempted_members = each.value.exempted_members
-    }
-  }
-}
+#   dynamic "audit_log_config" {
+#     for_each = each.value
+#     content {
+#       log_type         = each.value.log_type
+#       exempted_members = each.value.exempted_members
+#     }
+#   }
+# }

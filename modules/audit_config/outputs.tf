@@ -18,3 +18,8 @@ output "audit_log_config" {
   value       = var.audit_log_config
   description = "Map of log type and exempted members to be added to service"
 }
+
+output "audit_log_config_1" {
+  value       = local.audit_log_config
+  description = "Map of log type and exempted members to be added to service"
+}
